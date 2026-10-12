@@ -31,7 +31,7 @@ public class CliUserInterface {
         while(init != 0){
 
             int option = DataTypeValidator.validateInt("1. Registro " +
-                    "2. Login" +
+                    "2. Login " +
                     "3. Salir");
 
             switch (option){
@@ -57,40 +57,50 @@ public class CliUserInterface {
 
     }
 
+    public void userMenu() {
 
-    public void userMenu(){
+        int option = DataTypeValidator.validateInt(
+                "Seleccione una opción:\n" +
+                        "1. Registrar usuario\n" +
+                        "2. Consultar usuario por ID\n" +
+                        "3. Consultar todos los usuarios\n" +
+                        "4. Actualizar usuario\n" +
+                        "5. Contar usuarios registrados\n" +
+                        "6. Eliminar usuario\n"
 
-        int option = DataTypeValidator.validateInt("Seleccione 1. registrar usuario " +
-                "2. Consultar Usuario por id" +
-                "3. Consultar todos los usuarios");
+        );
 
-        switch (option){
+
+        switch (option) {
             case 1:
-                System.out.println("Registrar Usuario");
                 userView.createUser();
                 break;
+
             case 2:
-                System.out.println("Consultar usuario por id");
-                int id = DataTypeValidator.validateInt("Ingrese el id del usuario a consultar");
+                int id = DataTypeValidator.validateInt("Ingrese el ID del usuario a consultar: ");
                 userView.selectById(id);
                 break;
+
             case 3:
-                System.out.println("Consultar todos los usuarios");
                 userView.selectUsers();
                 break;
+
+            case 4:
+                userView.update();
+                break;
+
+            case 5:
+                userView.countUsers();
+                break;
+
+            case 6:
+                int idDelete = DataTypeValidator.validateInt("Ingrese el ID del usuario que desea eliminar: ");
+                userView.deleteUser(idDelete);
+                break;
+
+
             default:
-                System.out.println("Ingrese una opción valida");
+                System.out.println("Ingrese una opción válida.");
         }
-
-
-
-
-
     }
-
-
-
-
-
-
 }

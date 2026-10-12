@@ -16,7 +16,8 @@ public class DataTypeValidator {
                 sc.nextLine();
                 return value;
             } catch (InputMismatchException e) {
-                System.out.println("Solo se aceptan numeros enteros" + e.getMessage());
+                System.out.println("Solo se aceptan numeros enteros, error: " + e.getMessage());
+                sc.nextLine();
             }
         }
     }
@@ -30,7 +31,8 @@ public class DataTypeValidator {
                 sc.nextLine();
                 return value;
             } catch (InputMismatchException e) {
-                System.out.println("Solo se aceptan numeros decimales" + e.getMessage());
+                System.out.println("Solo se aceptan numeros decimales, error: " + e.getMessage());
+                sc.nextLine();
             }
         }
     }
@@ -44,7 +46,8 @@ public class DataTypeValidator {
                 sc.nextLine();
                 return value;
             } catch (InputMismatchException e) {
-                System.out.println("Solo se aceptan numeros decimal flotante" + e.getMessage());
+                System.out.println("Solo se aceptan numeros decimal flotante, error: " + e.getMessage());
+                sc.nextLine();
             }
         }
     }
@@ -55,7 +58,24 @@ public class DataTypeValidator {
             String value = sc.nextLine().trim();
             if(!value.isEmpty()){
                 return value;
+
+
             }
         }
     }
+
+    public static String validatePhone(String prompt) {
+        while (true) {
+            System.out.println(prompt);
+            String phone = sc.nextLine().trim();
+
+            if (phone.matches("[0-9]{7,15}")) {
+                return phone;
+            }
+
+            System.out.println("Error: ingrese un teléfono de 7 a 15 dígitos, sin letras ni espacios."
+            );
+        }
+    }
+
 }

@@ -20,13 +20,24 @@ public class UserView {
 
     public void createUser() {
 
+        int id;
 
-        int id = DataTypeValidator.validateInt("INgrese el id del usuario: ");
+        while (true) {
+            id = DataTypeValidator.validateInt("Ingrese el ID del usuario: "
+            );
+
+            if (userService.existsById(id)) {
+                System.out.println("Error: ya existe un usuario con ese ID. Intente nuevamente."
+                );
+            } else {
+                break;
+            }
+        }
+
         String name = DataTypeValidator.validateString("Ingrese el nombre del usuario: ");
         String lastName = DataTypeValidator.validateString("Ingrese el apellido del usuario: ");
         String email = DataTypeValidator.validateString("Ingrese el correo del usuario: ");
-        String phone = DataTypeValidator.validateString("Ingrese el telefono del usuario: ");
-        System.out.println("Ingrese la contraseña del usuario: ");
+        String phone = DataTypeValidator.validatePhone("Ingrese el teléfono del usuario: ");
         String password = DataTypeValidator.validateString("Ingrese la contraseña del usuario: ");
         System.out.println("Ingrese el estado del usuario: ");
         String state = SetUserState.getUserState();
@@ -41,29 +52,34 @@ public class UserView {
 
 
     public void selectById(int id) {
-
+        userService.selectById(id);
     }
 
 
     public void selectUsers(){
 
         userService.selectUsers();
-
     }
 
 
     public void update() {
+        userService.update();
+    }
 
+
+    public void deleteUser(int id) {
+        userService.deleteUser(id);
+    }
+
+    public void countUsers() {
+        int total = userService.countUsers();
+        System.out.println("Total de usuarios registrados: " + total);
     }
 
 
     // métodos Helper
 
-
-
-
     public String setUserPreferences(){
-
 
         int option = DataTypeValidator.validateInt("Seleccione 1. VIP 2. General 3. Preferencial");
         String preferences = "";

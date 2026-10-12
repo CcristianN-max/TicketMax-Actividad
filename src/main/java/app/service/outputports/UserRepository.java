@@ -12,6 +12,7 @@ public interface UserRepository {
     public List<User> selectAll();
     public User updateUser(User user);
     public void deleteById(int id);
+    public int countUsers();
 
 
 
